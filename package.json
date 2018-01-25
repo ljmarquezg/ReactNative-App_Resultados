@@ -1,5 +1,5 @@
 {
-  "name": "ApuestasDeportes",
+  "name": "apuestasdeportes",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -17,10 +17,13 @@
   },
   "homepage": "https://github.com/ljmarquezg/ApuestasDeportes_ReactNative#readme",
   "dependencies": {
+    "firebase": "^4.9.0",
     "react": "16.2.0",
     "react-native": "0.52.1",
     "react-native-router-flux": "^4.0.0-beta.28",
-    "react-native-vector-icons": "^4.5.0"
+    "react-native-vector-icons": "^4.5.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "babel-jest": "22.1.0",

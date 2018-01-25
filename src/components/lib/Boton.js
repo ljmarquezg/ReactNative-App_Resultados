@@ -1,30 +1,40 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 
-const Boton = ({ onPress, children }) => {
-    const { contenedorStyle } = styles;
+const Boton = ({ onPress, texto, touchableStyle, textStyle }) => {
+    const { contenedorStyle, botonStyle } = styles;
     return (
-        <TouchableOpacity style={contenedorStyle} onPress={onPress}>
-            {children}
+        <TouchableOpacity style={[contenedorStyle, touchableStyle]} onPress={onPress}>
+            <Text style={[botonStyle, textStyle]}>{texto.toUpperCase()}</Text>
         </TouchableOpacity>
     );
 };
 
 const styles = {
     contenedorStyle: {
-        flex: 1,
-        alignSelf: 'stretch',
-        backgroundColor: '#f1f1f1',
-        borderRadius: 5,
+        borderRadius: 0,
         borderWidth: 1,
-        borderColor: '#08BDBD',
+        borderColor: '#1c2551',
+        backgroundColor: '#3b4167',
         marginLeft: 5,
         marginRight: 5,
         padding: 5,
         justifyContent: 'center',
-        alignItems: 'center'
-    }
+        alignItems: 'center',
+        
+    },
+    botonStyle: {
+        fontSize: 18,
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        color: 'white',
+        fontWeight: '600',
+        fontFamily: 'Roboto',
+    },
 };
 
 export { Boton };
-
+//flex: 1,
+//alignSelf: 'stretch'
