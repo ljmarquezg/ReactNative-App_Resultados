@@ -53,6 +53,9 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Bebas Neue.ttf</string>
+		<string>Bebas.ttf</string>
+		<string>Orkney.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>
 		<string>Feather.ttf</string>

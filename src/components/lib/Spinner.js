@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Text } from 'react-native';
 
-const Spinner = ({ size }) => {
+const Spinner = ({ size, message, addTextStyle }) => {
+  const { viewStyles, textStyles } = styles;
     return (
-        <View style={styles.viewStyles}>
+        <View style={viewStyles}>
             <ActivityIndicator size={size} />
+            <Text style={[textStyles, addTextStyle]}>{message}</Text>
         </View>
     );
 };
@@ -14,6 +16,14 @@ const styles = {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    textStyles: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+        fontFamily: 'Bebas Neue',
+        color: 'rgba(255,255,255,0.8)',
+        fontSize: 24,
     }
 };
 

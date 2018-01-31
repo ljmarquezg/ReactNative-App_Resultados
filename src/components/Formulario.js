@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View } from 'react-native';
 import firebase from 'firebase';
-import { Boton, Card, CardSection, Input, Spinner } from './lib';
-
+import { Boton, Card, CardSection, Input, Spinner, Logo, Background } from './lib';
 
 class Formulario extends Component {
-    state = { 
+    state = {
         email: '',
         password: '',
         cargando: false,
@@ -19,7 +18,6 @@ class Formulario extends Component {
             this.setState({ cargando: true });
             firebase.auth().signInWithEmailAndPassword(email, password)
             .then(
-                
             )
             .catch((res) => {
                 this.loginError(res);
@@ -36,32 +34,26 @@ class Formulario extends Component {
         return (
             <View style={style.botonView}>
                 <Boton
-                     texto="Iniciar Sesion" 
-                     onPress={() => this.enviarFormulario()} 
-                     touchableStyle={{ backgroundColor: 'blue' }} 
-                     textStyle={{ color: 'white' }} 
+                     texto="Iniciar Sesión"
+                     onPress={() => this.enviarFormulario()}
+                     touchableStyle={{ backgroundColor: 'blue' }}
+                     textStyle={{ color: 'white' }}
                 />
-                   
+
             </View>
         );
     }
 
     render() {
-        const { content, imageContainer, imageStyles, backgroundImage } = style;
+        const { content } = style;
         return (
             <View style={content}>
-                <Image
-                    style={backgroundImage}
-                    source={require('../img/login-bk.png')}
-                />
-                <View style={imageContainer}>
-                    <Image
-                        style={imageStyles}
-                        source={require('../img/logo.png')}
-                    />
-                </View>
-                <Card>
-                    <CardSection>
+                <Background />
+                <Logo />
+                <Card addStyle={{ borderWidth: 0, shadowColor: 'transparent', elevation: 0 }}>
+                    <CardSection 
+                        addStyle={{ backgroundColor: 'transparent', borderBottomWidth: 0 }}
+                    >
                         <Input
                             etiqueta='Email'
                             value={this.state.email}
@@ -69,10 +61,19 @@ class Formulario extends Component {
                             placeholder='apuesta@email.com'
                             secureTextEntry={false}
                             autoCorrect={false}
-                            style={{ flex: 1 }}
+                            addEtiquetaStyle={{ 
+                                backgroundColor: 'transparent', 
+                                fontFamily: 'Bebas Neue', 
+                                fontSize: 25, 
+                                color: '#FFF' 
+                            }}
+                            addInputStyle={{ backgroundColor: '#fff', marginTop: 10 }}
                         />
                     </CardSection>
-                    <CardSection style={{ height: 60, width: 500, flex: 1 }}>
+
+                    <CardSection 
+                        addStyle={{ backgroundColor: 'transparent', borderBottomWidth: 0 }}
+                    >
                         <Input
                             etiqueta='Contraseña'
                             value={this.state.password}
@@ -80,6 +81,13 @@ class Formulario extends Component {
                             placeholder='123456'
                             secureTextEntry
                             autoCorrect={false}
+                            addEtiquetaStyle={{
+                                backgroundColor: 'transparent', 
+                                fontFamily: 'Bebas Neue', 
+                                fontSize: 25, 
+                                color: '#FFF' 
+                            }}
+                            addInputStyle={{ backgroundColor: 'rgba(255,255,255,0.9)' }}
                         />
                     </CardSection>
                 </Card>
@@ -109,34 +117,18 @@ const style = {
         justifyContent: 'center',
         flex: 1,
         flexDirection: 'row',
-        marginTop: 40
+        marginTop: 0,
+        marginBottom: 50
     },
     error: {
         marginTop: 10,
         padding: 15,
-        color: 'white',
+        color: 'red',
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        backgroundColor: 'rgba(255,255,255,0.5)'
     },
-    imageContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 5,
-        flexDirection: 'row'
-    },
-    imageStyles: {
-        height: 150,
-        width: 150,
-        backgroundColor: 'transparent',
-        marginBottom: 60
-    },
-    backgroundImage: {
-        backgroundColor: '#ccc',
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-    }
 };
 
 export default Formulario;

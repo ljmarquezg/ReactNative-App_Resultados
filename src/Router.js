@@ -1,69 +1,80 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
-//import { View } from 'react-native';
 import Inicio from './components/Inicio';
-import { BarraInferior } from './components/lib/';
+import Apuestas from './components/Apuestas';
+import Baloncesto from './components/Baloncesto';
+import Futbol from './components/Futbol';
+import Perfil from './components/Perfil';
 
 const RouterComponent = (props) => {
     //const { content, background } = style;
     return (
-        <Router sceneStyle={{ paddingTop: 65 }}>
-            <Scene key="inicio">
+        <Router
+            sceneStyle={{ paddingTop: 60, marginBottom: 0 }}
+            navigationBarStyle={{
+                height: 60, 
+                backgroundColor: '#3b4167', 
+                elevation: 0, 
+                shadowColor: 'gray', 
+                shadowOffset: { width: 0, height: 1 }, 
+                shadowOpacity: 0.5 
+            }}
+            titleStyle={{ fontFamily: 'Orkney', color: '#fff' }}
+            rightButtonTextStyle={{ 
+                fontFamily: 'Bebas Neue', 
+                fontSize: 20, 
+                lineHeight: 22, 
+                color: '#eece54' 
+            }}
+        >
+            <Scene key="inicio" >
+                        <Scene
+                            key="Inicio"
+                            component={Inicio}
+                            title="Inicio"
+                            initial
+                            init
+                            rightTitle="Cerrar Sesión"
+                            onRight={() => props.cerrarSesion()}
+                        />
                     <Scene
-                        key="Inicio"
-                        component={Inicio}
-                        title="Inicio"
-                        initial
+                        key="Futbol"
+                        component={Futbol}
+                        title="Fútbol"
                         init
                         rightTitle="Cerrar Sesion"
                         onRight={() => props.cerrarSesion()}
                     />
+
                     <Scene
-                        key="Football"
-                        component={BarraInferior}
-                        title="Football"
+                        key="Baloncesto"
+                        component={Baloncesto}
+                        title="Baloncesto"
+                        init
+                        rightTitle="Cerrar Sesion"
+                        onRight={() => props.cerrarSesion()}
+                    />
+
+                    <Scene
+                        key="Apuestas"
+                        component={Apuestas}
+                        title="Apuestas"
+                        init
+                        rightTitle="Cerrar Sesion"
+                        onRight={() => props.cerrarSesion()}
+                    />
+
+                    <Scene
+                        key="Perfil"
+                        component={Perfil}
+                        title="Perfíl"
                         init
                         rightTitle="Cerrar Sesion"
                         onRight={() => props.cerrarSesion()}
                     />
             </Scene>
         </Router>
-                      <BarraInferior
-                      home='home'
-                      football='soccer'
-                      basketball='dribbble'
-                      apuesta='cash-usd'
-                    />
     );
 };
 
 export default RouterComponent;
-
-/*
-
-<Scene key="data">
-                    <Scene
-                        key="Football"
-                        Component={Inicio}
-                        title="Football"
-                        rightTitle="Cerrar Sesión"
-                        onRight={() => this.props.cerrarSesion()}
-                    />
-
-                    <Scene
-                        key="Basketball"
-                        Component={Inicio}
-                        title="Basketball"
-                        rightTitle="Cerrar Sesión"
-                        onRight={() => this.props.cerrarSesion()}
-                    />
-
-                    <Scene
-                        key="Apuestas"
-                        Component={Inicio}
-                        title="Apuestas"
-                        rightTitle="Cerrar Sesión"
-                        onRight={() => this.props.cerrarSesion()}
-                    />
-                </Scene>
-                */

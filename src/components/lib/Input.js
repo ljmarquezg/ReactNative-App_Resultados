@@ -1,22 +1,33 @@
 import React from 'react';
 import { Text, View, TextInput } from 'react-native';
 
-const Input = ({ etiqueta, value, onChangeText, placeholder, secureTextEntry, autoCorrect }) => {
+const Input = ({ 
+        etiqueta, 
+        value, 
+        onChangeText, 
+        placeholder, 
+        secureTextEntry,
+        autoCorrect, 
+        addEtiquetaStyle,
+        addInputStyle, 
+        editable
+    }) => {
     const { viewStyle, etiquetaStyle, inputStyle } = styles;
     return (
         <View style={viewStyle}>
             <View style={{ flexDirection: 'row' }}>
-                <Text style={etiquetaStyle}>{etiqueta}</Text>
+                <Text style={[etiquetaStyle, addEtiquetaStyle]}>{etiqueta}</Text>
             </View>
             <View style={{ flexDirection: 'row' }}>
                 <TextInput
                     placeholder={placeholder}
-                    style={inputStyle}
+                    style={[inputStyle, addInputStyle]}
                     value={value}
                     onChangeText={onChangeText}
                     secureTextEntry={secureTextEntry}
                     autoCorrect={autoCorrect}
                     autoCapitalize={'none'}
+                    editable={editable === true ? false : true}
                 />
             </View>
         </View>
@@ -36,10 +47,10 @@ const styles = {
         flex: 1,
     },
     inputStyle: {
-        color: '#000',
-        height: 40,
-        paddingLeft: 5,
-        paddingRight: 5,
+        color: '#3b4167',
+        height: 50,
+        paddingLeft: 10,
+        paddingRight: 10,
         fontSize: 19,
         lineHeight: 24,
         flex: 1,

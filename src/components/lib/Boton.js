@@ -21,17 +21,15 @@ const styles = {
         padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        
+
     },
     botonStyle: {
-        fontSize: 18,
         paddingTop: 5,
         paddingBottom: 5,
         paddingLeft: 10,
         paddingRight: 10,
-        color: 'white',
-        fontWeight: '600',
-        fontFamily: 'Roboto',
+        fontSize: 28,
+        fontFamily: 'Bebas Neue',
     },
 };
 
