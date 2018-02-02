@@ -88,7 +88,7 @@ class Formulario extends Component {
                                     fontSize: 25, 
                                     color: '#FFF' 
                                 }}
-                                addInputStyle={{ backgroundColor: 'rgba(255,255,255,0.9)' }}
+                                addInputStyle={{ backgroundColor: '#fff', marginTop: 10 }}
                             />
                         </CardSection>
                     </Card>
