@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View, LayoutAnimation } from 'react-native';
+import { Text, 
+        TouchableWithoutFeedback, 
+        View, LayoutAnimation, 
+        Platform, 
+        UIManager 
+    } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { CardSection, Input, Boton, Spinner } from './lib';
-
 import * as actions from '../actions';
-
 
 class ItemLista extends Component {
   state = { local: '', visitante: '', error: '', cargando: false, apostado: false, resultados: [] }
@@ -18,29 +21,21 @@ class ItemLista extends Component {
       //Asignar los valores del props obtenidos en la base de datos a una variable local
       this.state.apostado = this.props.apuestaInfo.apuesta;
     }
-
     componentWillUpdate() {
+        //Habilitar las animaciones en android.
+        if (Platform.OS === 'android') {
+            UIManager.setLayoutAnimationEnabledExperimental(true);
+          }
         LayoutAnimation.spring();
     }
-
     //==================================================
     //          Actualizar Apuesta
     //==================================================
     actualizarApuesta() {
         //Asignar el email del usuario actual a la abriable email
         const email = firebase.auth().currentUser.email;
-        const { //Apuesta,
-                // terminado,
-                // apuestalocal,
-                // apuestavisitante,
-                // equipolocal,
-                // equipovisitante,
-                deporte,
-                // fecha,
+        const { deporte,
                 id,
-                // scorelocal,
-                // scorevisitante,
-                // usuario,
                 pais
                } = this.props.apuestaInfo;
 
@@ -51,23 +46,28 @@ class ItemLista extends Component {
           apuestavisitante: this.state.visitante,
           usuario: email,
         };
-        //==================================================
-        //          Actualizar la base de datos
-        //==================================================
+    //==================================================
+    //          Actualizar la base de datos
+    //==================================================
          firebase.database().ref().child(deporte).child(pais)
          .child(id)
            .update(itemApuesta, (error) => {
-               console.log(error);
                 if (error) {
                     this.setState({ error: error });
                 } else {
                     this.setState({ cargando: false, apostado: true });
                 }
-           });
+           })
+           .catch((res) => {
+            this.setState({ error: res });
+        });
         }
-
+    //==================================================
+    //          Enviar información al formulario
+    //==================================================
     enviarFormulario() {
         const { local, visitante } = this.state;
+        //Verificar que no hayan campos vacíos antes de envíar el formulario
         if (local === '' || visitante === '') {
             this.setState({ error: 'Introduzca la información correcta' });
         } else {
@@ -75,12 +75,15 @@ class ItemLista extends Component {
             this.actualizarApuesta();
         }
     }
-
+    //==================================================
+    //          Verificar acción a realizar
+    //==================================================
     mostrarAccion() {
-        console.log(this.state.apostado);
+        // Si el estado es cargando. Mostrar Spinner
         if (this.state.cargando) {
             return <Spinner size="large" />;
         }
+        //Mostrar botón de enviar si el item no posee una apuesta asignada
         if (this.state.apostado === false) {
             return (
                 <View style={styles.botonView}>
@@ -93,14 +96,16 @@ class ItemLista extends Component {
                 </View>
             );
         }
-
+        //Mostrar ícono "Check" si el item ya posee una apuesta
           return (
             <View style={styles.botonView} >
                     <Icon name='check-circle' size={35} color="green" />
             </View>
           );
       }
-
+    //========================================================================
+    //    Verificar que solo puedan introducirse numeros en el campo de texto
+    //========================================================================
       validarCampos(texto) {
           let newText = '';
               const numbers = '0123456789';
@@ -109,23 +114,27 @@ class ItemLista extends Component {
                       newText += texto[i];
                       this.setState({ error: '' });
                   } else {
-                        // your call back function
                       this.setState({ error: 'Solo se aceptan números' });
                   }
               }
               return newText;
       }
 
-    mostrarDescripcion() {
+    //========================================================================
+    //      Mostrar el panel de apuestas de acuerdo al estado del evento
+    //========================================================================
+    mostrarPanelApuesta() {
         const { inputStyle, error, disabled } = styles;
         const { expandir, apuestaInfo } = this.props;
         if (expandir) {
             return (
                  <View>
                       <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ textAlign: 'center', flex: 1, marginTop: 5 }}>
-                           Introduce el resultado final del partido
-                        </Text>
+                           { apuestaInfo.apuesta === false 
+                            ? (<Text style={{ textAlign: 'center', flex: 1, marginTop: 5 }}>
+                                Introduce el resultado final del partido 
+                            </Text>)
+                            : null }
                         </View>
 
                     <View style={{ flexDirection: 'row' }}>
@@ -205,18 +214,24 @@ class ItemLista extends Component {
             >
             <View style={this.props.rowStyle}>
                 <CardSection addStyle={rowStyle}>
-                    <Text style={styleLocal}> 
+                    <Text style={styleLocal}>   
                         {apuestaInfo.equipolocal}
                     </Text>
-                    <Text style={score}>{
-                        apuestaInfo.scorelocal} - {apuestaInfo.scorevisitante}
+                    <Text style={score}> 
+                        {this.props.expandir 
+                        ? 'Vs' 
+                        : (<Icon 
+                                name={apuestaInfo.deporte === 'baloncesto' ? 'dribbble' : 'soccer'} 
+                                color={'#888'} 
+                        />)
+                        }
                     </Text>
                     <Text style={styleVisitante}> 
                         {apuestaInfo.equipovisitante}
                     </Text>
                 </CardSection>
                 <View style={[apostar, rowStyle]}>
-                    {this.mostrarDescripcion()}
+                    {this.mostrarPanelApuesta()}
                 </View>
             </View>
             </TouchableWithoutFeedback>
@@ -249,7 +264,7 @@ const styles = {
     styleLocal: {
         textAlign: 'left',
         fontFamily: 'Orkney',
-        flex: 1,
+        flex: 3,
         marginTop: 7,
     },
     score: {
@@ -261,7 +276,7 @@ const styles = {
     styleVisitante: {
         textAlign: 'right',
         fontFamily: 'Orkney',
-        flex: 1,
+        flex: 3,
         marginTop: 7,
     },
     disabled: {

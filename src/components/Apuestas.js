@@ -12,7 +12,9 @@ class Apuestas extends Component {
         this.props.getData([]);
         this.obtenerApuestas();
       }
-
+      //==========================================================================================
+      //   Consultar la base de datos y obtener los eventos cuyo valor terminado sea false
+      //==========================================================================================
         obtenerApuestas() {
           const datos = [];
           const resultados = [];
@@ -35,22 +37,24 @@ class Apuestas extends Component {
                   });
               });
               datos.map((elemento) => {
-                //Guardar solo los elementos que hayan culminado
+                //Guardar solo los elementos que posean el valor terminado como verdadero
                 if (elemento.terminado === false) {
                   //Agregar el elemento al array de elementos
                   resultados.push(elemento);
                 }
               });
+                //Enviar el arreglo de resultados al reducer apuestas.
+                //Se envía de manera invertida para que la información del país se posicione
+                //al inicio de la tabla al ser renderizada
                 this.props.getData(resultados.reverse());
-              //this.props.getData(datos.reverse());
             });
+            //Actualizar el estado de la variable data con el arreglo de resultados
             this.setState({ data: resultados });
         }
 
     render() {
         const { scrollContenedor, content, } = styles;
         const length = this.props.apuestas.length;
-
         switch (true) {
           case (length === 0):
             return (

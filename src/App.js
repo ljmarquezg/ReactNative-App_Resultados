@@ -5,7 +5,8 @@ import { createStore } from 'redux';
 import firebase from 'firebase';
 import reducers from './reducers';
 import Router from './Router';
-import { Spinner, BarraInferior } from './components/lib';
+import { Spinner } from './components/lib';
+import BarraInferior from './components/lib/BarraInferior';
 import Formulario from './components/Formulario';
 
 
@@ -41,8 +42,7 @@ export default class App extends Component {
   }
 
   //=========================================================================
-  //    Mosrtar formulario de inicio de sesión
-  //<Router cerrarSesion={this.cerrarSesion.bind(this)} store />
+  //    Mostrar la pantalla Inicio
   //=========================================================================
   mostrarContenido() {
     const { imageContainer, backgroundImage, imageStyles } = styles;
@@ -93,6 +93,9 @@ export default class App extends Component {
   }
 
   render() {
+    console.ignoredYellowBox = [
+      'Setting a timer'
+      ];
     const { container } = styles;
     return (
         <View style={container}>
@@ -108,7 +111,7 @@ const styles = {
     flex: 1,
     padding: 0,
     width: '100%',
-    backgroundColor: 'orange'
+    backgroundColor: '#ddd'
   },
   imageContainer: {
       justifyContent: 'center',

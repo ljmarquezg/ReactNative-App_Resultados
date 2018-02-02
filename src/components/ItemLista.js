@@ -7,21 +7,24 @@ import * as actions from '../actions';
 
 class ItemLista extends Component {
   state = { scorelocal: '', scorevisitante: '', error: '', cargando: false }
+  //========================================================================
+  //    Renderizar con efecto expandir / aparecer
+  //========================================================================
     componentWillUpdate() {
         LayoutAnimation.spring();
     }
 
     render() {
       const { styleLocal, score, styleVisitante } = styles;
-      const { apuestaInfo } = this.props;
+      const { apuestaInfo, rowStyle } = this.props;
         return (
-            <View style={this.props.rowStyle}>
-                <CardSection addStyle={this.props.rowStyle}>
+            <View style={rowStyle}>
+                <CardSection addStyle={rowStyle}>
                     <Text style={styleLocal}> 
                         {apuestaInfo.equipolocal}
                     </Text>
-                    <Text style={score}>{
-                        apuestaInfo.scorelocal} - {apuestaInfo.scorevisitante}
+                    <Text style={score}>
+                        {apuestaInfo.scorelocal} - {apuestaInfo.scorevisitante}
                     </Text>
                     <Text style={styleVisitante}>
                          {apuestaInfo.equipovisitante}
@@ -63,7 +66,7 @@ const styles = {
     score: {
         textAlign: 'center',
         fontFamily: 'Orkney',
-        flex: 1,
+        width: 73, 
         marginTop: 7,
     },
     styleVisitante: {

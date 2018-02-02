@@ -30,6 +30,7 @@ const styles = {
         paddingRight: 10,
         fontSize: 28,
         fontFamily: 'Bebas Neue',
+        color: 'white'
     },
 };
 

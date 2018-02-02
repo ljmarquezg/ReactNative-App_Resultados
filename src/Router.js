@@ -28,50 +28,61 @@ const RouterComponent = (props) => {
             }}
         >
             <Scene key="inicio" >
-                        <Scene
-                            key="Inicio"
-                            component={Inicio}
-                            title="Inicio"
-                            initial
-                            init
-                            rightTitle="Cerrar Sesión"
-                            onRight={() => props.cerrarSesion()}
-                        />
+                <Scene key="Inicio" >
                     <Scene
-                        key="Futbol"
+                        key="home"
+                        component={Inicio}
+                        title="Inicio"
+                        initial
+                        init
+                        rightTitle="Cerrar Sesión"
+                        onRight={() => props.cerrarSesion()}
+                    />
+                </Scene>
+
+                <Scene key="Futbol">
+                    <Scene
+                        key="football"
                         component={Futbol}
                         title="Fútbol"
                         init
                         rightTitle="Cerrar Sesion"
                         onRight={() => props.cerrarSesion()}
                     />
+                </Scene>
 
+                <Scene key="Baloncesto">
                     <Scene
-                        key="Baloncesto"
+                        key="Basketball"
                         component={Baloncesto}
                         title="Baloncesto"
                         init
                         rightTitle="Cerrar Sesion"
                         onRight={() => props.cerrarSesion()}
                     />
+                </Scene>
 
-                    <Scene
-                        key="Apuestas"
+                <Scene key="Apuestas">
+                    <Scene 
+                        key="Bets"
                         component={Apuestas}
                         title="Apuestas"
                         init
                         rightTitle="Cerrar Sesion"
                         onRight={() => props.cerrarSesion()}
                     />
+                </Scene>
 
-                    <Scene
-                        key="Perfil"
+                <Scene key="Perfil">
+                    <Scene 
+                        key="Profile"
                         component={Perfil}
                         title="Perfíl"
                         init
                         rightTitle="Cerrar Sesion"
                         onRight={() => props.cerrarSesion()}
                     />
+                </Scene>
             </Scene>
         </Router>
     );

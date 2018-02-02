@@ -6,6 +6,10 @@ import { CardSection } from './lib';
 const ItemImagen = (props) => {
       const { viewStyle, flag, textStyle } = styles;
       const { imagen, descripcion } = props.rowData;
+
+      //========================================================================
+      // Mostrar la bandera del pais de acuerdo a su valor en la base de datos
+      //========================================================================
         return (
             <View style={viewStyle}>
                 <CardSection addStyle={props.rowStyle}>

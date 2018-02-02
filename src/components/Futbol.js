@@ -13,6 +13,9 @@ class Futbol extends Component {
     this.props.getData([]);
     this.obtenerItems();
   }
+  //=================================================================
+  //    Consultar la base de datos y obtener los resultados de fútbol
+  //=================================================================
   obtenerItems() {
     const datos = [];
     const resultados = [];
@@ -32,6 +35,7 @@ class Futbol extends Component {
           resultados.push(elemento);
         }
       });
+
       this.props.getData(resultados.reverse());
     });
     this.setState({ data: resultados });
