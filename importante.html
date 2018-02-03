@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicación React Native</title>
+  <link rel="stylesheet" href="./dist/css/materialize.min.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Neucha" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<style media="screen">
+  body{
+    overflow: auto;
+  }
+  .card-content ol li{
+    margin-bottom:10px
+  }
+  a{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .img-responsive {
+  	display: block;
+  	max-width: 100%;
+  }
+  .collapsible-header > p{
+    margin: 0
+  }
+</style>
+
+
+  <div class="container">
+    <ul class="collapsible blue-grey lighten-5" data-collapsible="accordion">
+      <h5 class="center-align" style="margin-top:5%">
+        <img src="./dist/img/react.jpg" style="max-height:200px">
+      </h5>
+
+      <li>
+        <div class="collapsible-header">1. Crear espacio de trabajo <i class="material-icons">arrow_drop_down</i></div>
+        <div class="collapsible-body blue-grey lighten-4">
+          <span>
+            <ol>
+              <ol>
+                <li type="i">
+                  <p>Crear una carpeta donde se alojará el proyecto en la raíz del disco duro: <br/><b>C:\ReactNative-App_Resultados</b></p>
+                  <a href="./dist/img/carpetaproyecto.png"><img class="img-responsive" src="./dist/img/carpetaproyecto.png"></a>
+                </li>
+
+                <li type="i">
+                    <p>Abrir la cónsola de comandos con permisos de administrador</b></p>
+                    <a href="./dist/img/consola-administrador.png"><img class="img-responsive" src="./dist/img/consola-administrador.png"></a>
+                  </li>
+
+                <li type="i">
+                  <p>Desde la consola de comandos, navegar hasta la ruta donde alojan los archivos del proyecto. Para este ejemplo se creará el directorio raíz del proyecto en la raíz del disco duro: <br/><b>C:\ReactNative-App_Resultados</b></p>
+                  <a href="./dist/img/directorioraiz.png"><img class="img-responsive" src="./dist/img/directorioraiz.png"></a>
+                </li>
+              </ol>
+            </ol>
+          </span>
+        </div>
+      </li>
+
+      <li>
+        <div class="collapsible-header">2. Instalar componentes React Native necesarios para iniciar el proyecto <i class="material-icons">arrow_drop_down</i></div>
+        <div class="collapsible-body blue-grey lighten-4" style="display: block;">
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header">2. iOS <i class="material-icons">arrow_drop_down</i></div>
+                <div class="collapsible-body blue-grey lighten-2" style="display: block;">
+                      <ol class="collapsible white" data-collapsible="accordion">
+                        <li>
+                            	<p>Abrir el appstore y descargar e instalar Xcode</p>
+                        </li>
+                        <h5> Ejecutar los siguientes comandos desde la terminal del sistema opetarivo</h5>
+                        <li>
+                                <p>Instalar brew ingresando a la página <a href="http://brew.sh">http://brew.sh</a> y ejecutar el codigo que aparece en la página en la terminal</p>
+                                <code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code> 
+                        </li>
+                        <li>
+                                <p>Instalar Node desde la terminal</p>
+                                <code>brew install node</code>
+                        </li>
+                        <li>
+                                <p>Instalar Watchman</p>
+                                <code>brew install watchman</code>
+                        </li>
+                        <li>
+                                <p>Instalar react native de manera global.</p>
+                                <code>npm install -g react-native-cli</code>
+                        </li>
+                    </ol>
+                </div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">2. Windows <i class="material-icons">arrow_drop_down</i></div>
+                <div class="collapsible-body blue-grey lighten-2" style="display: block;">
+                      <ol class="collapsible white" data-collapsible="accordion">
+                        <li>
+                                <p>Descargar e instalar Java</p>
+                                <code><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Descargar Java</a></code>
+                        </li>
+                        
+                        <li>
+                                <p>Descargar e Instalar NodeJS</p>
+                                <code><a href="https://nodejs.org/es/download/">Descargar Node</a></code> 
+                        </li>
+
+                        <li>
+                                <p>Descargar e instalar Python2</p>
+                                <code><a href="https://www.python.org/download/releases/2.7.2/">Descargar Python</a>></code>
+                        </li>
+                        <li>
+                                <p>Instalar Watchman</p>
+                                <code>brew install watchman</code>
+                        </li>
+                        <li>
+                                <p>Instalar react native de manera global.</p>
+                                <code>npm install -g react-native-cli</code>
+                        </li>
+                    </ol>
+                </div>
+            </li>
+        </ul>
+        </div>
+      </li>
+
+      <li>
+        <div class="collapsible-header" id="3">3. Instalar las dependencias del proyecto (Windows / iOS)<i class="material-icons">arrow_drop_down</i></div>
+        <div class="collapsible-body blue-grey lighten-4">
+            <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                    <div class="collapsible-header"><p><i class="material-icons">play_arrow</i>3.1 Navegar hasta la carpeta del proyecto desde la consola de comandos<i class="material-icons">arrow_drop_down</i></p></div>
+                    <div class="collapsible-body blue-grey lighten-5">
+                      <ol>
+                            <li type="i">
+                                    <p>Abrir la cónsola de comandos con permisos de administrador</b></p>
+                                    <a href="./dist/img/consola-administrador.png"><img class="img-responsive" src="./dist/img/consola-administrador.png"></a>
+                                  </li>
+                
+                                <li type="i">
+                                  <p>Desde la consola de comandos, navegar hasta la ruta donde alojan los archivos del proyecto. Para este ejemplo se creará el directorio raíz del proyecto en la raíz del disco duro: <br/><b>C:\ReactNative-App_Resultados</b></p>
+                                  <a href="./dist/img/directorioraiz.png"><img class="img-responsive" src="./dist/img/directorioraiz.png"></a>
+                                </li>
+    
+                                <li type="i">
+                                    <p>Ejecutar el comando <code>npm install</code> y esperar a que termine el proceso de instalación.</p>
+                                    <a href="./dist/img/dependencias.png"><img class="img-responsive" src="./dist/img/dependencias.png"></a>
+                                </li>
+
+                                <li type="i">
+                                        <p>Vincular los íconos al proyecto. Ejecutar el comando:</p> 
+                                        <code>react-native link</code> 
+                                        <p>y esperar a que termine el proceso de instalación.</p>
+                                        <a href="./dist/img/link.png"><img class="img-responsive" src="./dist/img/link.png"></a>
+                                </li>
+
+                                <li type="i">
+                                        <p> a. <b>Copiar los archivos de íconos en la carpeta react-native-vector-icons</p> </b>
+                                        <ul>
+                                            <li type="a">
+                                                <p>Abrir la carpeta <code>C:\ReactNative-App_Resultados\node_modules\react-native-vector-icons</code> </p>
+                                            </li>
+                                            <li type="a">
+                                                <b><p>Copiar las carpetas <b>glyphmaps, lib</b> y todos los archivos .js</b>
+                                            </li>
+                                        </ul>
+                                        <a href="./dist/img/iconscopy.png"><img class="img-responsive" src="./dist/img/iconscopy.png"></a>
+                                        <p> b. Pegar los archivos de íconos en la carpeta __fixtures__\files de react-native</p>
+                                        <code>C:\ReactNative-App_Resultados\node_modules\react-native\local-cli\core\__fixtures__\files</code>
+                                        <a href="./dist/img/iconspaste.png"><img class="img-responsive" src="./dist/img/iconspaste.png"></a>
+                                </li>
+                        </li>
+                      </ol>
+                    </div>
+                  </li>
+                  
+            </ul>
+        </div>
+      </li>
+
+      <li>
+        <div class="collapsible-header">4. Iniciar proyecto React Native<i class="material-icons">arrow_drop_down</i></div>
+        <div class="collapsible-body blue-grey lighten-4">
+            <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header"><p><i class="material-icons">play_arrow</i>4.1 Windows<i class="material-icons">arrow_drop_down</i></p></div>
+                <div class="collapsible-body blue-grey lighten-5">
+                  <ol>
+                    <li type="i">
+                      <p><b>Abrir Android Studio</b></p>
+                      <p>Crear un nuevo proyecto</p>
+                      <a href="./dist/img/androidStudio.png"><img class="img-responsive" src="./dist/img/androidStudio.png"></a>
+                    </li>
+
+                    <li type="i">
+                        <p><b>Crear un nuevo dispositivo virtual</b></p>
+                        <p>Se recomienda utilizar el dispositivo Nexus 5 con la ROM API 23 Marshmallow</p>                        
+                        <a href="./dist/img/hardware.png"><img class="img-responsive" src="./dist/img/hardware.png"></a>
+                        <a href="./dist/img/marshmallow.png"><img class="img-responsive" src="./dist/img/marshmallow.png"></a>
+                    </li>
+
+                        <li type="i">
+                            <p><b>Iniciar el emulador del dispositivo</b></p>
+                            <a href="./dist/img/emulador.png"><img class="img-responsive" src="./dist/img/emulador.png"></a>
+                        </li>
+
+                        <li type="i">
+                                <p><b>Ejecutar la aplicación</b></p>
+                                <p>En la cónsola de comandos, ejecutar el código</p>
+                                <code>react-native run-android</code>
+                                <a href="./dist/img/runandroid.png"><img class="img-responsive" src="./dist/img/runandroid.png"></a>
+                            </li>
+
+                            <li type="i">
+                                    <p><b>Verificar la aplicación en el dispositivo</b></p>
+                                    <p>Una vez ejecutado <code>react-native run-android</code> se ejecutará el servidor node en el equipo local. Una vez se haya culminado el proceso de compilación. La aplicación se abrirá en el dispositivo emulado.</p>
+                                    <code>react-native run-android</code>
+                                    <a href="./dist/img/app.png"><img class="img-responsive" src="./dist/img/app.png"></a>
+                            </li>
+                  </ol>
+                </div>
+              </li>
+              
+              <li>
+                <div class="collapsible-header"><p><i class="material-icons">play_arrow</i>4.2 iOS<i class="material-icons">arrow_drop_down</i></p></div>
+                <div class="collapsible-body blue-grey lighten-5">
+                  <ol>
+                      <li type="i">Iniciar la aplicación desde la terminal </li>
+                        <p>Desde la terminal, en la carpeta del proyecto ejecutar run-ios.</p>
+                        <a href="./dist/img/runios.png"><img class="img-responsive" src="./dist/img/runios.png"></a>
+                        </li>
+                        <li type="i">Iniciar la aplicación desde la terminal </li>
+                        <p>Una vez finalizada la compilación se mostrará la aplicación en el dispositivo.</p>
+                        <a href="./dist/img/appios.png"><img class="img-responsive" src="./dist/img/appios.png"></a>
+                        </li>
+                  </ol>
+                </div>
+              </li>
+            </ul>
+        </div>
+      </li>
+
+      <li>
+            <div class="collapsible-header"><p><i class="material-icons">play_arrow</i>5. Datos de la aplicación<i class="material-icons">arrow_drop_down</i></p></div>
+            <div class="collapsible-body blue-grey lighten-5">
+              <ol>
+                  <li type="i"><b>Iniciar Sesión</b>
+                        <p><b>Probar la aplicación en el dispositivo</b></p>
+                        <p>Email: apuesta@email.com</p>
+                        <p>Contraseña: 123456</p>
+                    </li>
+
+                    <li type="i"><b>Reiniciar Base de Datos</b>
+                      <p>Una vez iniciada la sesión, se recomienda reiniciar la base de datos, presionando el botón dentro de la pestaña perfíl</p>
+                  </li>
+
+              </ol>
+            </div>
+          </li>
+
+      <li>
+            <div class="collapsible-header">6. Errores comunes (Windows / iOS)<i class="material-icons">arrow_drop_down</i></div>
+            <div class="collapsible-body blue-grey lighten-4">
+                <ul class="" data-collapsible="accordion">
+                  <li>
+                      <ol>
+                        <li type="i">
+                          <p><b>Si al iniciar la aplicación se genera un error de react-native-vector-icons/MaterialCommunityIcons</b></p>
+                          <p>Siga los pasos del punto <a href="#3">3.iv y 3.v</a> para solventar el inconveniente </p>
+                          <a href="./dist/img/errorvector.png"><img class="img-responsive" src="./dist/img/errorvector.png"></a>
+                        </li>  
+                        
+                        <li type="i">
+                            <p><b>Windows</b></p>
+                            <p>Una vez copiados los archivos, ejecuta nuevamente el compilador de la aplicación</b></p>
+                            <p>En la cónsola de comandos, ejecutar el código</p>
+                            <code>react-native run-android</code>
+                            <a href="./dist/img/runandroid.png"><img class="img-responsive" src="./dist/img/runandroid.png"></a>
+                        </li> 
+                        
+                        <li type="i">
+                                <p><b>iOS</b></p>
+                                <p>Una vez copiados los archivos, ejecuta nuevamente el compilador de la aplicación</b></p>
+                                <p>En la cónsola de comandos, ejecutar el código</p>
+                                <code>react-native run-ios</code>
+                            <a href="./dist/img/runios.png"><img class="img-responsive" src="./dist/img/runios.png"></a>
+                            </li> 
+                      </ol>
+                    </div>
+                  </li>
+                </ul>
+            </div>
+          </li>
+
+    </ul>
+    <p class="center-align">
+      Luis José Márquez González
+    </p>
+  </div>
+<script type="text/javascript" src="./dist/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="./dist/js/materialize.min.js"></script>
+</div>
+</body>
+</html>
